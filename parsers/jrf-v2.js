@@ -133,13 +133,13 @@ module.exports = function(_params) {
             {
               column: "J",
               dataElement: "pcn-pop-trt",
-              categoryOptionCombo: "age-presac",  // PreSAC
+              categoryOptionCombo: "pcnd-int-decalb-age-presac-sex-unknown",  // PreSAC
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "K",
               dataElement: "pcn-pop-trt",
-              categoryOptionCombo: "age-sac",  // SAC
+              categoryOptionCombo: "pcnd-int-decalb-age-sac-sex-unknown",  // SAC
               mapping: function(value) {return Math.round(value)}
             },
             {
