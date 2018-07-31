@@ -56,25 +56,25 @@ module.exports = function(_params) {
             },
             {
               column: "G",
-              dataElement: "pcn-pop-trgt",
+              dataElement: "pcn-pop-trgt-intervention",
               categoryOptionCombo: "pcnd-int-ivmalb-age-sac-sex-unknown",
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "H",
-              dataElement: "pcn-pop-trgt",
+              dataElement: "pcn-pop-trgt-intervention",
               categoryOptionCombo: "pcnd-int-ivmalb-age-adult-sex-unknown",
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "K",
-              dataElement: "pcn-pop-trt",
+              dataElement: "pcn-pc-trt",
               categoryOptionCombo: "pcnd-int-ivmalb-age-sac-sex-unknown",
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "L",
-              dataElement: "pcn-pop-trt",
+              dataElement: "pcn-pc-trt",
               categoryOptionCombo: "pcnd-int-ivmalb-age-adult-sex-unknown",
               mapping: function(value) {return Math.round(value)}
             }
@@ -113,38 +113,38 @@ module.exports = function(_params) {
             // Population Targeted
             {
               column: "F",
-              dataElement: "pcn-pop-trgt",
+              dataElement: "pcn-pop-trgt-intervention",
               categoryOptionCombo: "pcnd-int-decalb-age-presac-sex-unknown",  // PreSAC
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "G",
-              dataElement: "pcn-pop-trgt",
+              dataElement: "pcn-pop-trgt-intervention",
               categoryOptionCombo: "pcnd-int-decalb-age-sac-sex-unknown",  // SAC
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "H",
-              dataElement: "pcn-pop-trgt",
+              dataElement: "pcn-pop-trgt-intervention",
               categoryOptionCombo: "pcnd-int-decalb-age-adult-sex-unknown",  // Adult
               mapping: function(value) {return Math.round(value)}
             },
             // Population Treated
             {
               column: "J",
-              dataElement: "pcn-pop-trt",
+              dataElement: "pcn-pc-trt",
               categoryOptionCombo: "pcnd-int-decalb-age-presac-sex-unknown",  // PreSAC
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "K",
-              dataElement: "pcn-pop-trt",
+              dataElement: "pcn-pc-trt",
               categoryOptionCombo: "pcnd-int-decalb-age-sac-sex-unknown",  // SAC
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "L",
-              dataElement: "pcn-pop-trt",
+              dataElement: "pcn-pc-trt",
               categoryOptionCombo: "pcnd-int-decalb-age-adult-sex-unknown",  // Adult
               mapping: function(value) {return Math.round(value)}
             }
@@ -184,39 +184,39 @@ module.exports = function(_params) {
             // Population Targeted
             {
               column: "F",
-              dataElement: "pcn-pop-trgt",
+              dataElement: "pcn-pop-trgt-intervention",
               categoryOptionCombo: "pcnd-int-ivm-age-sac-sex-unknown",  // SAC
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "G",
-              dataElement: "pcn-pop-trgt",
+              dataElement: "pcn-pop-trgt-intervention",
               categoryOptionCombo: "pcnd-int-ivm-age-adult-sex-unknown",  // Adult
               mapping: function(value) {return Math.round(value)}
             },
             // Population Treated - #1
             {
               column: "I",
-              dataElement: "pcn-pop-trt",
+              dataElement: "pcn-pc-trt",
               categoryOptionCombo: "pcnd-int-ivm-age-sac-sex-unknown",  // SAC
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "J",
-              dataElement: "pcn-pop-trt",
+              dataElement: "pcn-pc-trt",
               categoryOptionCombo: "pcnd-int-ivm-age-adult-sex-unknown",  // Adult
               mapping: function(value) {return Math.round(value)}
             },
             // Population Treated - #2
             {
               column: "L",
-              dataElement: "pcn-pop-trt",
+              dataElement: "pcn-pc-trt",
               categoryOptionCombo: "pcnd-int-ivm-r2-age-sac-sex-unknown",  // SAC
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "M",
-              dataElement: "pcn-pop-trt",
+              dataElement: "pcn-pc-trt",
               categoryOptionCombo: "pcnd-int-ivm-r2-age-adult-sex-unknown",  // Adult
               mapping: function(value) {return Math.round(value)}
             }
@@ -267,38 +267,38 @@ module.exports = function(_params) {
             // Population Targeted
             {
               column: "G",
-              dataElement: "pcn-pop-trgt",
+              dataElement: "pcn-pop-trgt-intervention",
               categoryOptionCombo: "pcnd-int-alb-age-presac-sex-unknown",  // PRESAC-ALB
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "H",
-              dataElement: "pcn-pop-trgt",
+              dataElement: "pcn-pop-trgt-intervention",
               categoryOptionCombo: "pcnd-int-alb-age-sac-sex-unknown",  // SAC-ALB
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "I",
-              dataElement: "pcn-pop-trgt",
+              dataElement: "pcn-pop-trgt-intervention",
               categoryOptionCombo: "pcnd-int-pzq-age-sac-sex-unknown",  // SAC-PZQ
               mapping: function(value) {return Math.round(value)}
             },
             // Population Treated
             {
               column: "F",
-              dataElement: "pcn-pop-trt",
+              dataElement: "pcn-pc-trt",
               categoryOptionCombo: "age-presac",  // PreSAC
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "G",
-              dataElement: "pcn-pop-trt",
+              dataElement: "pcn-pc-trt",
               categoryOptionCombo: "age-sac",  // SAC ALB
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "H",
-              dataElement: "pcn-pop-trt",
+              dataElement: "pcn-pc-trt",
               categoryOptionCombo: "age-adult",  // Adult
               mapping: function(value) {return Math.round(value)}
             }
@@ -338,38 +338,38 @@ module.exports = function(_params) {
             // Population Targeted
             {
               column: "F",
-              dataElement: "pcn-pop-trgt",
+              dataElement: "pcn-pop-trgt-intervention",
               categoryOptionCombo: "pcnd-int-pzq-age-presac-sex-unknown",  // PreSAC
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "G",
-              dataElement: "pcn-pop-trgt",
+              dataElement: "pcn-pop-trgt-intervention",
               categoryOptionCombo: "pcnd-int-pzq-age-sac-sex-unknown",  // SAC
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "H",
-              dataElement: "pcn-pop-trgt",
+              dataElement: "pcn-pop-trgt-intervention",
               categoryOptionCombo: "pcnd-int-pzq-age-adult-sex-unknown",  // Adult
               mapping: function(value) {return Math.round(value)}
             },
             // Population Treated
             {
               column: "J",
-              dataElement: "pcnd-int-pzq-age-presac-sex-unknown",
-              categoryOptionCombo: "age-presac",  // PreSAC
+              dataElement: "pcn-pop-trgt-intervention",
+              categoryOptionCombo: "pcnd-int-pzq-age-presac-sex-unknown",  // PreSAC
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "K",
-              dataElement: "pcn-pop-trt",
+              dataElement: "pcn-pc-trt",
               categoryOptionCombo: "age-sac",  // SAC
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "L",
-              dataElement: "pcn-pop-trt",
+              dataElement: "pcn-pc-trt",
               categoryOptionCombo: "pcnd-int-pzq-age-adult-sex-unknown",  // Adult
               mapping: function(value) {return Math.round(value)}
             }
