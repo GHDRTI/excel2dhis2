@@ -31,15 +31,7 @@ module.exports = function(_params) {
         params: params,
         row: {
           event: {
-            event: function(row) {
-              var district = getRowVariables(row)['district'];
-              if (!district) district = "0"
-              var date = getRowVariables(row)['surveydate'];
-              if (!date) {
-                date = moment(new Date(params.period,0,1)).format('YYYY-MM-DD');
-              }
-              return params.lfProgram + "-" + district.id + "-" + date;
-            },
+            
             program: params.lfProgram,
             programStage: params.lfProgramStage,
             attributeOptionCombo: params.attributeOptionCombo,
@@ -365,15 +357,7 @@ module.exports = function(_params) {
         params: params,
         row: {
           event: {
-            event: function(row) {
-              var district = getRowVariables(row)['district'];
-              if (!district) district = "0"
-              var date = getRowVariables(row)['dateOfSurvey'];
-              if (!date) {
-                date = moment(new Date(params.period,0,1)).format('YYYY-MM-DD');
-              }
-              return params.onchoProgram + "-" + district.id + "-" + date;
-            },
+           
             program: params.onchoProgram,
             programStage: params.onchoProgramStage,
             attributeOptionCombo: params.attributeOptionCombo,
