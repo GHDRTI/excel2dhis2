@@ -166,17 +166,17 @@ module.exports = function(_params) {
             },
             // Antib. - Az Drops 
             {
-              column: "V",
+              column: "Y",
               dataElement: "pcn-pop-trt",
               categoryOptionCombo: "pcnd-int-az-drops-age-unknown-sex-female"
             },
             {
-              column: "W",
+              column: "Z",
               dataElement: "pcn-pop-trt",
               categoryOptionCombo: "pcnd-int-az-drops-age-unknown-sex-male"
             },
             {
-              column: "X",
+              column: "AA",
               dataElement: "pcn-pop-trt",
               categoryOptionCombo: "pcnd-int-az-drops-age-unknown-sex-unknown",
               mapping: function(value, row) {
