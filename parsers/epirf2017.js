@@ -672,6 +672,230 @@ module.exports = function(_params) {
             }
           ]
         }
+      },
+       {
+        names: [/STH/],
+        startRow: 8,
+        params: params,
+        row: {
+          event: {
+            
+            program: params.sthProgram,
+            attributeOptionCombo: params.attributeOptionCombo,
+            attributeCategoryOptions: params.attributeCategoryOptions,
+            status: "COMPLETED",
+            eventDate: function(row) {
+              var date = getRowVariables(row)['surveydate'];
+              if (!date) {
+                return moment(new Date(params.period,0,1)).format('YYYY-MM-DD');
+              } else {
+                return date;
+              }
+            },
+            orgUnit: function(row) {
+              var district = getRowVariables(row)['district'];
+              if (district) return district.id;
+            },
+            orgUnitName: function(row) {
+              var district = getRowVariables(row)['district'];
+              if (district) return district.name;
+            },
+            coordinate: function(row) {
+              var lat = getRowVariables(row)['latitude'];
+              var lon = getRowVariables(row)['longitude'];
+              if (lat && lon) {
+                return {
+                  latitude: lat,
+                  longitude: lon
+                }
+              }
+            },
+            notes: function(row) {
+              var comments = getRowVariables(row)['comments'];
+              if (comments) {
+                return [{value: comments}]
+              }
+            },
+          },
+          invariants: {
+
+          },
+          dataValues: [
+            // Type of survey
+            // Type of survey
+            {
+              column: "A",
+              dataElement: "sth-survey-type",
+              mapping: function(value, row) {
+                if (value === "Mapping") {
+                  return "mapping";
+                } else if (value === "Sentinel Site") {
+                  return "sentinel";
+                } else if (value === "Within TAS") {
+                  return "within-tas";
+                } else if (value === "Other") {
+                  return "other";
+                }
+              }
+            },
+            // Admin Unit
+            {
+              column: "B",
+              variable: "district",
+              mapping: function(value, row) {
+                return getDistrict(value);
+              }
+            },
+            // Community Surveyed 
+            {
+              column: "C",
+              dataElement: "pcn-community",
+            },
+            // Rounds delivered p. to survey
+            {
+              column: "D",
+              dataElement: "pcn-num-rounds-pre-survey",
+              mapping: function(value, row) {
+                if (value) return parseInt(value, 10);
+              }
+            },
+            // Date of Survey
+            {
+              column: "E",
+              variable: "surveydate",
+              mapping: function(value, row) {
+                var d = moment(value, 'MMMM YYYY');
+                if (!d) d = moment(value + ' ' + params.period, 'MMMM YYYY' );
+                return d.format('YYYY-MM-DD');
+              }
+            },
+            // Latitude
+            { 
+              column: "F",
+              variable: "latitude"
+            },
+            // Longitude
+            { 
+              column: "G",
+              variable: "longitude"
+            },
+            // Age - Minimum
+            {
+              column: "H",
+              dataElement: "pcn-min-age",
+              mapping: function(value, row) {
+                var match = /(\d{2})(\d{2})/.exec(value);
+                if (match && match[1]) return parseInt(match[1],10)
+              }
+            },
+            // Age - Maximum
+            {
+              column: "H",
+              dataElement: "pcn-max-age",
+              mapping: function(value, row) {
+                var match = /(\d{2})(\d{2})/.exec(value);
+                if (match && match[2]) return parseInt(match[2],10)
+              }
+            },
+            // Number of people examined
+            {
+              column: "I",
+              dataElement: "sth-ascaris-num-people-examined",
+              mapping: function(value, row) {
+                if (value) return parseInt(value, 10);
+              }
+            },
+            // Number of people positive
+            {
+              column: "J",
+              dataElement: "sth-ascaris-num-people-pos",
+              mapping: function(value, row) {
+                if (value) return parseInt(value, 10);
+              }
+            },
+            // % with heavy intensity of infection
+            {
+              column: "L",
+              dataElement: "sth-ascaris-pct-heavy-infection",
+              mapping: function(value, row) {
+                if (value) return parseFloat(value);
+              }
+            },
+            // % with moderate intensity of infection
+            {
+              column: "M",
+              dataElement: "sth-ascaris-pct-moderate-infection",
+              mapping: function(value, row) {
+                if (value) return parseFloat(value);
+              }
+            },
+            // Number of people examined
+            {
+              column: "N",
+              dataElement: "sth-hookworm-num-people-examined",
+              mapping: function(value, row) {
+                if (value) return parseInt(value, 10);
+              }
+            },
+            // Number of people positive
+            {
+              column: "O",
+              dataElement: "sth-hookworm-num-people-pos",
+              mapping: function(value, row) {
+                if (value) return parseInt(value, 10);
+              }
+            },
+            // % with heavy intensity of infection
+            {
+              column: "Q",
+              dataElement: "sth-hookworm-pct-heavy-infection",
+              mapping: function(value, row) {
+                if (value) return parseFloat(value);
+              }
+            },
+            // % with moderate intensity of infection
+            {
+              column: "R",
+              dataElement: "sth-hookworm-pct-moderate-infection",
+              mapping: function(value, row) {
+                if (value) return parseFloat(value);
+              }
+            },
+
+            {
+              column: "S",
+              dataElement: "sth-trichuris-num-people-examined",
+              mapping: function(value, row) {
+                if (value) return parseInt(value, 10);
+              }
+            },
+            // Number of people positive
+            {
+              column: "T",
+              dataElement: "sth-trichuris-num-people-pos",
+              mapping: function(value, row) {
+                if (value) return parseInt(value, 10);
+              }
+            },
+            // % with heavy intensity of infection
+            {
+              column: "V",
+              dataElement: "sth-trichuris-pct-heavy-infection",
+              mapping: function(value, row) {
+                if (value) return parseFloat(value);
+              }
+            },
+            // % with moderate intensity of infection
+            {
+              column: "W",
+              dataElement: "sth-trichuris-pct-moderate-infection",
+              mapping: function(value, row) {
+                if (value) return parseFloat(value);
+              }
+            }
+
+          ]
+        }
       }
     ]
   };
