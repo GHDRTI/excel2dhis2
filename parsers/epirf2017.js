@@ -722,7 +722,6 @@ module.exports = function(_params) {
           },
           dataValues: [
             // Type of survey
-            // Type of survey
             {
               column: "A",
               dataElement: "sth-survey-type",
@@ -896,7 +895,188 @@ module.exports = function(_params) {
 
           ]
         }
-      }
+      },
+      {
+        names: [/SCH/],
+        startRow: 8,
+        params: params,
+        row: {
+          event: {
+            
+            program: params.schProgram,
+            attributeOptionCombo: params.attributeOptionCombo,
+            attributeCategoryOptions: params.attributeCategoryOptions,
+            status: "COMPLETED",
+            eventDate: function(row) {
+              var date = getRowVariables(row)['surveydate'];
+              if (!date) {
+                return moment(new Date(params.period,0,1)).format('YYYY-MM-DD');
+              } else {
+                return date;
+              }
+            },
+            orgUnit: function(row) {
+              var district = getRowVariables(row)['district'];
+              if (district) return district.id;
+            },
+            orgUnitName: function(row) {
+              var district = getRowVariables(row)['district'];
+              if (district) return district.name;
+            },
+            coordinate: function(row) {
+              var lat = getRowVariables(row)['latitude'];
+              var lon = getRowVariables(row)['longitude'];
+              if (lat && lon) {
+                return {
+                  latitude: lat,
+                  longitude: lon
+                }
+              }
+            },
+            notes: function(row) {
+              var comments = getRowVariables(row)['comments'];
+              if (comments) {
+                return [{value: comments}]
+              }
+            },
+          },
+          invariants: {
+
+          },
+          dataValues: [
+            // Type of survey
+            {
+              column: "A",
+              dataElement: "sch-survey-type",
+              mapping: function(value, row) {
+                if (value === "Mapping") {
+                  return "mapping";
+                } else if (value === "Sentinel Site") {
+                  return "sentinel";
+                } else if (value === "Other") {
+                  return "other";
+                }
+              }
+            },
+            // Admin Unit
+            {
+              column: "B",
+              variable: "district",
+              mapping: function(value, row) {
+                return getDistrict(value);
+              }
+            },
+            // Community Surveyed 
+            {
+              column: "C",
+              dataElement: "pcn-community",
+            },
+            // Date of Survey
+            {
+              column: "D",
+              variable: "surveydate",
+              mapping: function(value, row) {
+                var d = moment(value, 'MMMM YYYY');
+                if (!d) d = moment(value + ' ' + params.period, 'MMMM YYYY' );
+                return d.format('YYYY-MM-DD');
+              }
+            },
+            // Latitude
+            { 
+              column: "E",
+              variable: "latitude"
+            },
+            // Longitude
+            { 
+              column: "F",
+              variable: "longitude"
+            },
+            // Age - Minimum
+            {
+              column: "G",
+              dataElement: "pcn-min-age",
+              mapping: function(value, row) {
+                var match = /(\d{2})(\d{2})/.exec(value);
+                if (match && match[1]) return parseInt(match[1],10)
+              }
+            },
+            // Age - Maximum
+            {
+              column: "G",
+              dataElement: "pcn-max-age",
+              mapping: function(value, row) {
+                var match = /(\d{2})(\d{2})/.exec(value);
+                if (match && match[2]) return parseInt(match[2],10)
+              }
+            },
+            // Number of people examined
+            {
+              column: "H",
+              dataElement: "sch-urn-num-people-examined",
+              mapping: function(value, row) {
+                if (value) return parseInt(value, 10);
+              }
+            },
+            // Number of people positive
+            {
+              column: "I",
+              dataElement: "sch-urn-num-people-pos",
+              mapping: function(value, row) {
+                if (value) return parseInt(value, 10);
+              }
+            },
+            // % with heavy intensity of infection
+            {
+              column: "K",
+              dataElement: "sch-urn-pct-heavy-infection",
+              mapping: function(value, row) {
+                if (value) return parseFloat(value);
+              }
+            },
+            // % with low intensity of infection
+            {
+              column: "L",
+              dataElement: "sch-urn-pct-moderate-infection",
+              mapping: function(value, row) {
+                if (value) return parseFloat(value);
+              }
+            },
+            // Number of people examined - Intestinal
+            {
+              column: "M",
+              dataElement: "sch-intestinal-num-people-examined",
+              mapping: function(value, row) {
+                if (value) return parseInt(value, 10);
+              }
+            },
+            // Number of people positive
+            {
+              column: "N",
+              dataElement: "sch-intestinal-num-people-pos",
+              mapping: function(value, row) {
+                if (value) return parseInt(value, 10);
+              }
+            },
+            // % with heavy intensity of infection
+            {
+              column: "P",
+              dataElement: "sch-intestinal-pct-heavy-infection",
+              mapping: function(value, row) {
+                if (value) return parseFloat(value);
+              }
+            },
+            // % with low intensity of infection
+            {
+              column: "Q",
+              dataElement: "sch-intestinal-pct-moderate-infection",
+              mapping: function(value, row) {
+                if (value) return parseFloat(value);
+              }
+            }
+
+            ]
+          }
+        }
     ]
   };
 
