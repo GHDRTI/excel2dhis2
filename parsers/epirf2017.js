@@ -3,14 +3,15 @@ module.exports = function(_params) {
   let moment = require('moment');
 
   let params = Object.assign({
-    period: null,
     orgUnits: null,
     orgTree: null,
     geoconnectAttributeID: 'rct9QrdQEnz',
     spellingsAttributeID: 'U4FWYMGCWju',
-    lfProgram: "pcn-lfsurvey-event",
+    lfProgram: "tvVPo84NYZP",
+    // lfProgram: "pcn-lfsurvey-event",
     // lfProgramStage: "jrgpfrJKSW0",
-    onchoProgram: "pcn-ovsurvey-event",
+    onchoProgram: "MuVGDJvPZy4",
+    // onchoProgram: "pcn-ovsurvey-event",
     // onchoProgramStage: "f1QqINpgrcR",
     sthProgram: "pcn-sthsurvey-event",
     schProgram: "pcn-schsurvey-event",
@@ -31,7 +32,6 @@ module.exports = function(_params) {
         params: params,
         row: {
           event: {
-            
             program: params.lfProgram,
             programStage: params.lfProgramStage,
             attributeOptionCombo: params.attributeOptionCombo,
@@ -116,8 +116,9 @@ module.exports = function(_params) {
               column: "E",
               variable: "surveydate",
               mapping: function(value, row) {
-                var d = moment(value, 'MMMM YYYY');
-                if (!d) d = moment(value + ' ' + params.period, 'MMMM YYYY' );
+                var d = moment(value, 'MMMM YYYY', true);
+                if (!d || !d.isValid())
+                  d = moment(value + ' ' + params.period, 'MMMM YYYY' );
                 return d.format('YYYY-MM-DD');
               }
             },
@@ -357,7 +358,6 @@ module.exports = function(_params) {
         params: params,
         row: {
           event: {
-           
             program: params.onchoProgram,
             programStage: params.onchoProgramStage,
             attributeOptionCombo: params.attributeOptionCombo,
@@ -442,8 +442,9 @@ module.exports = function(_params) {
               column: "E",
               variable: "dateOfSurvey",
               mapping: function(value, row) {
-                var d = moment(value, 'MMMM YYYY');
-                if (!d) d = moment(value + ' ' + params.period, 'MMMM YYYY' );
+                var d = moment(value, 'MMMM YYYY', true);
+                if (!d || !d.isValid()) 
+                  d = moment(value + ' ' + params.period, 'MMMM YYYY' );
                 return d.format('YYYY-MM-DD');
               }
             },
