@@ -115,6 +115,11 @@ function parseSheet(parserSheet, sheet) {
 function parseCellValues(parserCell, sheet) {
   var cellData = sheet[parserCell.column + parserCell.row];
   var data = {};
+
+  if (empty(cellData)){
+    return data;
+  }
+
   // Apply keys in mapping
   for (var i = 0; i < mappingKeys.length; i++) {
     var key = mappingKeys[i];
