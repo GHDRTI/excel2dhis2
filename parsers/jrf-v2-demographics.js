@@ -57,26 +57,6 @@ module.exports = function(_params) {
                 return Math.round(Number.parseFloat(value));
               }
             },
-            // No prevalence for LF or Oncho
-            // Prevalence - LF
-            // {
-            //   column: "H",
-            //   dataElement: "pcn-prevalence",
-            //   categoryOptionCombo: "pc-ntd-lf",
-            //   mapping: function(value, row) {
-
-            //   }
-            // },
-            // // Prevalence - Oncho
-            // {
-            //   column: "I",
-            //   dataElement: "pcn-prevalence",
-            //   categoryOptionCombo: "pc-ntd-ov",
-            //   mapping: function(value, row) {
-
-            //   }
-            // },
-          
             
             // Endemicity - LF
             {
@@ -145,7 +125,31 @@ module.exports = function(_params) {
                   return 'endemic'
                 }
               }
-            }
+            },
+            // Population Requiring PC - LF
+            {
+              column: "L",
+              dataElement: "pcn-pop-require-pc",
+              categoryOptionCombo: "pc-ntd-lf",
+            },
+            // Population Requiring PC - Oncho
+            {
+              column: "M",
+              dataElement: "pcn-pop-require-pc",
+              categoryOptionCombo: "pc-ntd-sch",
+            },
+            // Population Requiring PC - STH
+            {
+              column: "N",
+              dataElement: "pcn-pop-require-pc",
+              categoryOptionCombo: "pc-ntd-sth",
+            },
+            // Population Requiring PC - SCH
+            {
+              column: "O",
+              dataElement: "pcn-pop-require-pc",
+              categoryOptionCombo: "pc-ntd-sch",
+            },
           ]
         }
       }
