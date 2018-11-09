@@ -150,6 +150,40 @@ module.exports = function(_params) {
               dataElement: "pcn-pop-require-pc",
               categoryOptionCombo: "pc-ntd-sch",
             },
+            // Number of treatment rounds planned per year - LF
+            {
+               column: "P",
+               dataElement: "pcn-rounds-planned",
+               categoryOptionCombo: "pc-ntd-lf",
+            },
+            // Number of treatment rounds planned per year - Oncho
+            {
+              column: "Q",
+              dataElement: "pcn-rounds-planned",
+              categoryOptionCombo: "pc-ntd-ov",
+            },
+            // Number of treatment rounds planned per year - STH
+            {
+              column: "R",
+              dataElement: "pcn-rounds-planned",
+              categoryOptionCombo: "pc-ntd-sth",
+            },
+            // Number of treatment rounds planned per year - SCH
+            {
+              column: "S",
+              dataElement: "pcn-rounds-planned",
+              categoryOptionCombo: "pc-ntd-sch",
+            },
+            // PC Implemented - Round 1
+            {
+              column: "T",
+              dataElement: "pcn-int-implemented-r1"
+            },
+            // PC Implemented - Round 2
+            {
+              column: "U",
+              dataElement: "pcn-int-implemented-r2"
+            }
           ]
         }
       }
