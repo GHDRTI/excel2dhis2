@@ -111,6 +111,11 @@ module.exports = function(_params) {
                 return getDistrict(value);
               }
             },
+            // If mapping
+            {
+              column: "D",
+              dataElement: "pcn-mapping-site-name"
+            },
             // Date of Survey
             {
               column: "E",
