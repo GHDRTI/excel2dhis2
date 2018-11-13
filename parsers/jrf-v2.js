@@ -353,6 +353,11 @@ module.exports = function(_params) {
               orgUnit: null
             },
             {
+              column: "D",
+              dataElement: "pcn-int-implemented-r1",
+              categoryOptionCombo: "pcnd-int-pzq"
+            },
+            {
               column: "E",
               dataElement: "pcn-pcdate",
               categoryOptionCombo: "pcnd-int-pzq",  
