@@ -302,21 +302,27 @@ module.exports = function(_params) {
               categoryOptionCombo: "pcnd-int-pzq-age-sac-sex-unknown",  // SAC-PZQ
               mapping: function(value) {return Math.round(value)}
             },
+            {
+              column: "J",
+              dataElement: "pcn-pop-trgt-intervention",
+              categoryOptionCombo: "pcnd-int-pzq-age-adult-sex-unknown",  // Adult-PZQ
+              mapping: function(value) {return Math.round(value)}
+            },
             // Population Treated
             {
-              column: "F",
+              column: "L",
               dataElement: "pcn-pc-trt",
               categoryOptionCombo: "age-presac",  // PreSAC
               mapping: function(value) {return Math.round(value)}
             },
             {
-              column: "G",
+              column: "M",
               dataElement: "pcn-pc-trt",
               categoryOptionCombo: "age-sac",  // SAC ALB
               mapping: function(value) {return Math.round(value)}
             },
             {
-              column: "H",
+              column: "N",
               dataElement: "pcn-pc-trt",
               categoryOptionCombo: "age-adult",  // Adult
               mapping: function(value) {return Math.round(value)}
