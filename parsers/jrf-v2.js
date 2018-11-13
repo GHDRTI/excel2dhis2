@@ -47,6 +47,11 @@ module.exports = function(_params) {
               orgUnit: null
             },
             {
+              column: "D",
+              dataElement: "pcn-int-implemented-r1",
+              categoryOptionCombo: "pcnd-int-ivmalb"
+            },
+            {
               column: "E",
               dataElement: "pcn-pcdate",
               categoryOptionCombo: "pcnd-int-ivmalb",
@@ -103,9 +108,9 @@ module.exports = function(_params) {
               orgUnit: null
             },
             {
-              // PC Implemented
               column: "D",
-              
+              dataElement: "pcn-int-implemented-r1",
+              categoryOptionCombo: "pcnd-int-pzq"
             },
             {
               column: "E",
@@ -179,6 +184,11 @@ module.exports = function(_params) {
               orgUnit: null
             },
             {
+              column: "D",
+              dataElement: "pcn-int-implemented-r1",
+              categoryOptionCombo: "pcnd-int-ivm"
+            },
+            {
               column: "E",
               dataElement: "pcn-pcdate",
               categoryOptionCombo: "pcnd-int-ivm",  
@@ -249,18 +259,22 @@ module.exports = function(_params) {
               variable: "district",
               orgUnit: null
             },
-            // removed for june
-            // {
-            //   column: "E",
-            //   dataElement: "cx7mIjgV6m1", // medicine used
-            //   mapping: function(value, row) {
-            //     if ((value || "").match(/mbd/i)) {
-            //       return 'mbd';
-            //     } else if ((value || "").match(/alb/i)) {
-            //       return 'alb'
-            //     }
-            //   }
-            // },
+            {
+              column: "D",
+              dataElement: "pcn-int-implemented-r1",
+              categoryOptionCombo: "pcnd-int-pzqmvd"
+            },
+            {
+               column: "E",
+               dataElement: "pcn-t1-medicine-used", // medicine used
+               mapping: function(value, row) {
+                 if ((value || "").match(/mbd/i)) {
+                   return 'mbd';
+                 } else if ((value || "").match(/alb/i)) {
+                   return 'alb'
+                 }
+               }
+             },
             {
               column: "F",
               dataElement: "pcn-pcdate",
