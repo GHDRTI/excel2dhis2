@@ -68,13 +68,13 @@ module.exports = function(_params) {
             },
             {
               column: "K",
-              dataElement: "pcn-pc-trt",
+              dataElement: "pcn-pop-trt-intervention",
               categoryOptionCombo: "pcnd-int-ivmalb-age-sac-sex-unknown",
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "L",
-              dataElement: "pcn-pc-trt",
+              dataElement: "pcn-pop-trt-intervention",
               categoryOptionCombo: "pcnd-int-ivmalb-age-adult-sex-unknown",
               mapping: function(value) {return Math.round(value)}
             }
@@ -101,6 +101,11 @@ module.exports = function(_params) {
               column: "C",
               variable: "district",
               orgUnit: null
+            },
+            {
+              // PC Implemented
+              column: "D",
+              
             },
             {
               column: "E",
@@ -197,26 +202,26 @@ module.exports = function(_params) {
             // Population Treated - #1
             {
               column: "I",
-              dataElement: "pcn-pc-trt",
+              dataElement: "pcn-pop-trt-intervention",
               categoryOptionCombo: "pcnd-int-ivm-age-sac-sex-unknown",  // SAC
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "J",
-              dataElement: "pcn-pc-trt",
+              dataElement: "pcn-pop-trt-intervention",
               categoryOptionCombo: "pcnd-int-ivm-age-adult-sex-unknown",  // Adult
               mapping: function(value) {return Math.round(value)}
             },
             // Population Treated - #2
             {
               column: "L",
-              dataElement: "pcn-pc-trt",
+              dataElement: "pcn-pop-trt-intervention",
               categoryOptionCombo: "pcnd-int-ivm-r2-age-sac-sex-unknown",  // SAC
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "M",
-              dataElement: "pcn-pc-trt",
+              dataElement: "pcn-pop-trt-intervention",
               categoryOptionCombo: "pcnd-int-ivm-r2-age-adult-sex-unknown",  // Adult
               mapping: function(value) {return Math.round(value)}
             }
