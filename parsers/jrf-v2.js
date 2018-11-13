@@ -311,27 +311,25 @@ module.exports = function(_params) {
             // Population Treated
             {
               column: "L",
-              dataElement: "pcn-pc-trt",
-              categoryOptionCombo: "age-presac",  // PreSAC
+              dataElement: "pcn-pop-trt-intervention",
+              categoryOptionCombo: "pcnd-int-pzqmvd-age-presac-sex-unknown",  // PreSAC
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "M",
-              dataElement: "pcn-pc-trt",
-              categoryOptionCombo: "age-sac",  // SAC ALB
+              dataElement: "pcn-pop-trt-intervention",
+              categoryOptionCombo: "pcnd-int-pzqmvd-age-sac-sex-unknown",  // SAC ALB
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "N",
-              dataElement: "pcn-pc-trt",
-              categoryOptionCombo: "age-adult",  // Adult
+              dataElement: "pcn-pop-trt-intervention",
+              categoryOptionCombo: "pcnd-int-pzqmvd-age-adult-sex-unknown",  // Adult
               mapping: function(value) {return Math.round(value)}
             }
           ]
         }
       },
-
-
       // T2
       {
         names: [/T2/],
@@ -387,26 +385,113 @@ module.exports = function(_params) {
             // Population Treated
             {
               column: "J",
-              dataElement: "pcn-pop-trgt-intervention",
+              dataElement: "pcn-pop-trt-intervention",
               categoryOptionCombo: "pcnd-int-pzq-age-presac-sex-unknown",  // PreSAC
               mapping: function(value) {return Math.round(value)}
+
             },
             {
               column: "K",
-              dataElement: "pcn-pc-trt",
-              categoryOptionCombo: "age-sac",  // SAC
+              dataElement: "pcn-pop-trt-intervention",
+              categoryOptionCombo: "pcnd-int-pzq-age-sac-sex-unknown",  // SAC
               mapping: function(value) {return Math.round(value)}
             },
             {
               column: "L",
-              dataElement: "pcn-pc-trt",
+              dataElement: "pcn-pop-trt-intervention",
               categoryOptionCombo: "pcnd-int-pzq-age-adult-sex-unknown",  // Adult
               mapping: function(value) {return Math.round(value)}
             }
           ]
         }
+      },
+      // T3 - Round 1
+      {
+        names: [/T3_R1/],
+        startRow: 9,
+        row: {
+          invariants: {
+            period: function(row) {return params.period},
+            orgUnit: findOrg
+          },
+          dataValues: [
+          {
+              column: "B",
+              variable: "provincestate",
+              orgUnit: null
+          },
+          {
+              column: "C",
+              variable: "district",
+              orgUnit: null
+          },
+          {
+              column: "D",
+              dataElement: "pcn-int-implemented-r1",
+              categoryOptionCombo: "pcnd-int-mbd"
+          },
+          {
+               column: "E",
+               dataElement: "pcn-t3_r1-medicine-used", // medicine used
+               mapping: function(value, row) {
+                 if ((value || "").match(/mbd/i)) {
+                   return 'mbd';
+                 } else if ((value || "").match(/alb/i)) {
+                   return 'alb'
+                 }
+               }
+          },
+          {
+              column: "F",
+              dataElement: "pcn-pcdate",
+              categoryOptionCombo: "pcnd-int-mbd",
+              mapping: function(value, row) {
+                return moment(new Date(1899, 12, value - 1)).format('YYYY-MM-DD');
+              }
+          },
+          // population targeted
+          {
+              column: "G",
+              dataElement: "pcn-pop-trgt-intervention",
+              categoryOptionCombo: "pcnd-int-mbd-age-presac-sex-unknown",
+              mapping: function(value) {return Math.round(value)}
+          },
+          {
+              column: "H",
+              dataElement: "pcn-pop-trgt-intervention",
+              categoryOptionCombo: "pcnd-int-mbd-age-sac-sex-unknown",
+              mapping: function(value) {return Math.round(value)}
+          },
+          {
+              column: "I",
+              dataElement: "pcn-pop-trgt-intervention",
+              categoryOptionCombo: "pcnd-int-mbd-age-adult-sex-unknown",
+              mapping: function(value) {return Math.round(value)}
+          },
+          // Population Treated
+          {
+              column: "K",
+              dataElement: "pcn-pop-trt-intervention",
+              categoryOptionCombo: "pcnd-int-mbd-age-presac-sex-unknown",
+              mapping: function(value) {return Math.round(value)}
+          },
+          {
+              column: "L",
+              dataElement: "pcn-pop-trt-intervention",
+              categoryOptionCombo: "pcnd-int-mbd-age-sac-sex-unknown",
+              mapping: function(value) {return Math.round(value)}
+          },
+          {
+              column: "M",
+              dataElement: "pcn-pop-trt-intervention",
+              categoryOptionCombo: "pcnd-int-mbd-age-adult-sex-unknown",
+              mapping: function(value) {return Math.round(value)}
+          }
+        ]
       }
+    }
     ]
+    
   }
 
 
