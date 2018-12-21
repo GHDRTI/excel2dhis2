@@ -242,12 +242,11 @@ module.exports = function(_params) {
     var regionRegionName = findChildNamed(orgTree, provincestate, 'start');
     if (!regionRegionName) return null;
 
-    //console.log("Found "+ regionRegionName);
-
     //Find Zone
     var zone = findChildNamed(regionRegionName[0], provincestate, 'end', 
       regionRegionName[1].length);
     if (!zone) return null;
+
 
     //Find District
     return findChildNamed(zone, districtName, null);
