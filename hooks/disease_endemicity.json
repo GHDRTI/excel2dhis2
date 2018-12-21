@@ -1,0 +1,6 @@
+{
+  "name": "Update 'Disease Endemicity' data in analytics table",
+  "phase": "ANALYTICS_TABLE_POPULATED",
+  "analyticsTableType": "DATA_VALUE",
+  "sql": "update analytics_temp set \"WMrNELotGxj\" = '1234'"
+}
