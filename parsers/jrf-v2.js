@@ -596,8 +596,54 @@ module.exports = function(_params) {
     }
 
     if (!org) {
-      console.log("Unable to find district: " + variables.provincestate + 
-        "/" + variables.district);
+      
+
+       var province_district = variables.provincestate.trim() + "/" + variables.district.trim();
+
+       // don't log these, these are missing in the workbooks in 2018
+       if (province_district != "SNNPR Yem Special Woreda/Yem"
+          && province_district != "SNNPR South Omo/Semen Ari"
+          && province_district != "SNNPRSegen/Konso"
+          && province_district != "SNNPR Konta Special Woreda/Konta"
+          && province_district != "SNNPR Halaba Special Woreda/Halaba Rural"
+          && province_district != "SNNPR Basketo Special Woreda/Basketo"
+          && province_district != "OromiaGuji/Adola Rede"
+          && province_district != "OromiaBuno Bedele/Bedele Zuria"
+          && province_district != "SomaliQorahey/Boodaly"
+          && province_district != "SomaliQorahey/Ceel ogaden"
+          && province_district != "SomaliQorahey/Gogle/Kudunbur"
+          && province_district != "SomaliQorahey/Hig loley"
+          && province_district != "SomaliQorahey/lasdhankeere"
+          && province_district != "SomaliNogobo/Xararay"
+          && province_district != "SomaliNogobo/Hor shagah"
+          && province_district != "SomaliNogobo/Cayuun"
+          && province_district != "SomaliNogobo/Wangay"
+          && province_district != "SomaliNogobo/Yaxoob"
+          && province_district != "SomaliDolo/Lahelaw-Yeob"
+          && province_district != "SomaliAfder/Qarsadula"
+          && province_district != "SNNPRSidama/Hawela Tula"
+          && province_district != "OromiaWest Wellega/Leta Sibu"
+          && province_district != "OromiaWest Shewa/Meta Wolkite"
+          && province_district != "OromiaWest Shewa/Ejersa Lafo"
+          && province_district != "OromiaWest Shewa/Chobi"
+          && province_district != "OromiaWest Arsi/Heben Arsi"
+          && province_district != "OromiaKelem Wellega/Seden Chanka"
+          && province_district != "OromiaJimma/Omo Beyam"
+          && province_district != "OromiaJimma/Boter Tolay"
+          && province_district != "OromiaHoro Guduru/Horo Buluk"
+          && province_district != "OromiaHoro Guduru/Chomen Guduru"
+          && province_district !=  "OromiaGuji/Haro Wolabu"
+          && province_district !=  "OromiaBale/Ginnir Town"
+          && province_district !=  "AmharaWest Gojam/South Mecha"
+          && province_district !=  "AmharaWest Gojam/North Mecha"
+
+
+        ) {
+       
+       console.log("Unable to find district: " + province_district);
+      //console.log(province_district);
+      }
+      
       return null;
     }
     return org.id;

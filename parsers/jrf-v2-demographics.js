@@ -6,7 +6,7 @@ module.exports = function(_params) {
     orgTree: null
   }, _params);
 
-  let ParserUtils = require('./parser-utils.js')(params);
+  var orgTree = params.orgTree;
 
   var def = {
     params: params,
@@ -63,68 +63,26 @@ module.exports = function(_params) {
               column: "H",
               dataElement: "pcn-endemicity",
               categoryOptionCombo: "pc-ntd-lf",
-              mapping: function(value, row) {
-                if (value === '0' || value == 0) {
-                  return 'non-endemic'
-                } else if (value === '1' || value == 1) {
-                  return 'endemic'
-                } else if (value === '4' || value == 4) {
-                  return 'unknown'
-                } else if (value === '999' || value == 999) {
-                  return 'endemic'
-                }
-              }
             },
             // Endemicity - Oncho
             {
               column: "I",
               dataElement: "pcn-endemicity",
-              categoryOptionCombo: "pc-ntd-ov",
-              mapping: function(value, row) {
-                if (value === '0' || value == 0) {
-                  return 'non-endemic'
-                } else if (value === '1' || value == 1) {
-                  return 'endemic'
-                } else if (value === '4' || value == 4) {
-                  return 'unknown'
-                } else if (value === '999' || value == 999) {
-                  return 'endemic'
-                }
-              }
+              categoryOptionCombo: "pc-ntd-ov"
+              
             },
             // Endemicity - STH
             {
               column: "J",
               dataElement: "pcn-endemicity",
-              categoryOptionCombo: "pc-ntd-sth",
-              mapping: function(value, row) {
-                if (value === '0' || value == 0) {
-                  return 'non-endemic'
-                } else if (parseInt(value, 10) >= 1 && parseInt(value, 10) <= 3) {
-                  return 'endemic'
-                } else if (value === '4' || value == 4) {
-                  return 'unknown';
-                } else if (value === '5' || value == 5) {
-                  return 'endemic'
-                }
-              }
+              categoryOptionCombo: "pc-ntd-sth"
             },
             // Endemicity - SCH
             {
               column: "K",
               dataElement: "pcn-endemicity",
-              categoryOptionCombo: "pc-ntd-sch",
-              mapping: function(value, row) {
-                if (value === '0' || value == 0) {
-                  return 'non-endemic'
-                } else if (parseInt(value, 10) >= 1 && parseInt(value, 10) <= 3) {
-                  return 'endemic'
-                } else if (value === '4' || value == 4) {
-                  return 'unknown';
-                } else if (value === '5' || value == 5) {
-                  return 'endemic'
-                }
-              }
+              categoryOptionCombo: "pc-ntd-sch"
+              
             },
             // Population Requiring PC - LF
             {
@@ -194,18 +152,29 @@ module.exports = function(_params) {
     // Variables:
     //  - provincestate: RegionZone squished together name
     //  - district: Woreda 
-    var variables = ParserUtils.getRowVariables(row);
+    var variables = getRowVariables(row);
     if (!variables.provincestate || !variables.district) {
       console.log("Missing district info: " + variables.provincestate + 
         "/" + variables.district);
       return null;
+
+
     }
-    var org = ParserUtils.districtLookupProvinceState(variables.provincestate, variables.district);
+    var org = districtLookupProvinceState(variables.provincestate, variables.district);
     if (!org) {
-      org = ParserUtils.districtLookupState(variables.provincestate, variables.district);
+      org = districtLookupState(variables.provincestate, variables.district);
     }
 
+
     if (!org) {
+
+       if (province_district != "SNNPR Yem Special Woreda/Yem") {
+        console.log("Unable to find district: " + variables.provincestate + 
+        "/" + variables.district);
+
+      //console.log(province_district);
+
+
       console.log("Unable to find district: " + variables.provincestate + 
         "/" + variables.district);
       return null;
@@ -213,6 +182,103 @@ module.exports = function(_params) {
     return org.id;
   }
 
+
+  function districtLookupProvinceState(provincestate, districtName) {
+    //Find Region
+    
+    
+
+    //console.log("looking for: "+ provincestate);
+    var regionRegionName = findChildNamed(orgTree, provincestate, 'start');
+    if (!regionRegionName) return null;
+
+    console.log("found " + districtName);
+
+
+    //Find Zone
+    var zone = findChildNamed(regionRegionName[0], provincestate, 'end', 
+      regionRegionName[1].length);
+    if (!zone) return null;
+
+    //Find District
+    return findChildNamed(zone, districtName, null);
+  }
+
+  function districtLookupState(stateName, districtName) {
+    for (var i = 0; i < orgTree.children.length; i++) {
+      var region = orgTree.children[i];
+      var zone = findChildNamed(region, stateName);
+      if (zone) {
+        return findChildNamed(zone, districtName);
+      }
+    }
+  }
+
+  function findChildNamed(node, name, namelocation, offset) {
+    for (var i = 0; i < node.children.length; i++) {
+      var child = node.children[i];
+      for (var n = 0; n < child.spellings.length; n++) {
+        var childName = child.spellings[n].toLowerCase();
+        if (namelocation === 'start') {
+          if (name.toLowerCase().indexOf(childName) == 0) {
+            return [child, childName];
+          }
+        } else if (namelocation === 'end') {
+          if (name.toLowerCase().indexOf(childName, 1) == offset) {
+            return child;
+          }
+        } else {
+          if (name.toLowerCase() === childName) {
+            return child;
+          }
+        }
+      }
+    }
+  }
+
+
+  function getRowVariables(row) {
+    var variables = {};
+    for (var i = 0; i < row.length; i++) {
+      if (row[i].variable) variables[row[i].variable] = row[i].value;
+    }
+    return variables;
+  }
+
+
+  // Org to flat geoconnect mapping
+  // {"geoconnectId": {
+  //   id: "ORG00000000",
+  //   name: "Name",
+  //   spellings: ["Name", "Name1", "Name2"],
+  //   geoconnectId: "AAAAAAA"
+  // },...}
+  function orgsToGeoconnectLookup(orgUnits) {
+    var lookup = {};
+    for (var i = 0; i < orgUnits.length; i++) {
+      var orgUnit = orgUnits[i];
+      var geoAttr = getOrgAttribute(orgUnit, params['geoconnectAttributeID']);
+      if (geoAttr && geoAttr.value) {
+        lookup[geoAttr.value] = {
+          id: orgUnit.id,
+          name: orgUnit.name,
+          //spellings: orgNames(orgUnit),
+          path: orgUnit.path
+        }
+      }
+    }
+    return lookup;
+  }
+  function getOrgAttribute(orgUnit, attributeId) {
+    if (orgUnit.attributeValues) {
+      for (var a = 0; a < orgUnit.attributeValues.length; a++) {
+        var av = orgUnit.attributeValues[a]
+        if (av['attribute']['id'] == attributeId) {
+          return av;
+        }
+      }
+    }
+  }
 
   return def;
 }
