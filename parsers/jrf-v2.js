@@ -636,6 +636,12 @@ module.exports = function(_params) {
           && province_district !=  "OromiaBale/Ginnir Town"
           && province_district !=  "AmharaWest Gojam/South Mecha"
           && province_district !=  "AmharaWest Gojam/North Mecha"
+          && province_district !=  "AmharaWag Hemra/Tsagibji"
+          && province_district != "AmharaSouth Gonder/Sediemuja"
+          && province_district != "AmharaSouth Wello/Borena"
+          && province_district != "AmharaSouth Gonder/Meketewa"
+          && province_district != "AmharaSouth Gonder/Gunabegemidir"
+          && province_district != "AmharaNorth Wello/Raya Kobo"
 
 
         ) {
