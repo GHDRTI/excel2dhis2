@@ -574,10 +574,61 @@ module.exports = function(_params) {
           }
         ]
       }
-    }
+    },
+    // DISTRICT (store pre-calcuated variables)
+    {
+      names: [/DISTRICT/],
+      startRow: 9,
+      row: {
+        invariants: {
+          period: function(row) {return params.period},
+          orgUnit: findOrg
+        },
+        dataValues: [
+        {
+            column: "B",
+            variable: "provincestate",
+            orgUnit: null
+        },
+        {
+            column: "C",
+            variable: "district",
+            orgUnit: null
+        },
+        // Total Population Treated - LF
+        {
+           column: "G",
+           dataElement: "pct-total-pop-trt",
+           categoryOptionCombo: "pc-ntd-lf",
+        },
+        // Total Population Treated - OV
+        {
+           column: "M",
+           dataElement: "pct-total-pop-trt",
+           categoryOptionCombo: "pc-ntd-ov",
+        },
+        // Total Population Treated - STH
+        {
+           column: "S",
+           dataElement: "pct-total-pop-trt",
+           categoryOptionCombo: "pc-ntd-sth",
+        },
+         // Total Population Treated - SCH
+        {
+           column: "AC",
+           dataElement: "pct-total-pop-trt",
+           categoryOptionCombo: "pc-ntd-sch",
+        },
+
     ]
 
   }
+}
+]
+}
+
+
+
 
 
   function findOrg(row) {

@@ -63,25 +63,69 @@ module.exports = function(_params) {
               column: "H",
               dataElement: "pcn-endemicity",
               categoryOptionCombo: "pc-ntd-lf",
+              mapping: function(value, row) {
+                if (value === '0' || value == 0) {
+                  return 'non-endemic'
+                } else if (value === '1' || value == 1) {
+                  return 'endemic'
+                } else if (value === '4' || value == 4) {
+                  return 'unknown'
+                } else if (value === '999' || value == 999) {
+                  return 'endemic'
+                }
+              }
             },
             // Endemicity - Oncho
             {
               column: "I",
               dataElement: "pcn-endemicity",
-              categoryOptionCombo: "pc-ntd-ov"
+              categoryOptionCombo: "pc-ntd-ov",
+              mapping: function(value, row) {
+                if (value === '0' || value == 0) {
+                  return 'non-endemic'
+                } else if (value === '1' || value == 1) {
+                  return 'endemic'
+                } else if (value === '4' || value == 4) {
+                  return 'unknown'
+                } else if (value === '999' || value == 999) {
+                  return 'endemic'
+                }
+              }
               
             },
             // Endemicity - STH
             {
               column: "J",
               dataElement: "pcn-endemicity",
-              categoryOptionCombo: "pc-ntd-sth"
+              categoryOptionCombo: "pc-ntd-sth",
+              mapping: function(value, row) {
+                if (value === '0' || value == 0) {
+                  return 'non-endemic'
+                } else if (value === '1' || value == 1) {
+                  return 'endemic'
+                } else if (value === '4' || value == 4) {
+                  return 'unknown'
+                } else if (value === '999' || value == 999) {
+                  return 'endemic'
+                }
+              }
             },
             // Endemicity - SCH
             {
               column: "K",
               dataElement: "pcn-endemicity",
-              categoryOptionCombo: "pc-ntd-sch"
+              categoryOptionCombo: "pc-ntd-sch",
+              mapping: function(value, row) {
+                if (value === '0' || value == 0) {
+                  return 'non-endemic'
+                } else if (value === '1' || value == 1) {
+                  return 'endemic'
+                } else if (value === '4' || value == 4) {
+                  return 'unknown'
+                } else if (value === '999' || value == 999) {
+                  return 'endemic'
+                }
+              }
               
             },
             // Population Requiring PC - LF
@@ -94,7 +138,7 @@ module.exports = function(_params) {
             {
               column: "M",
               dataElement: "pcn-pop-require-pc",
-              categoryOptionCombo: "pc-ntd-sch",
+              categoryOptionCombo: "pc-ntd-ov",
             },
             // Population Requiring PC - STH
             {
@@ -157,24 +201,13 @@ module.exports = function(_params) {
       console.log("Missing district info: " + variables.provincestate + 
         "/" + variables.district);
       return null;
-
-
     }
     var org = districtLookupProvinceState(variables.provincestate, variables.district);
     if (!org) {
       org = districtLookupState(variables.provincestate, variables.district);
     }
 
-
     if (!org) {
-
-       if (province_district != "SNNPR Yem Special Woreda/Yem") {
-        console.log("Unable to find district: " + variables.provincestate + 
-        "/" + variables.district);
-
-      //console.log(province_district);
-
-
       console.log("Unable to find district: " + variables.provincestate + 
         "/" + variables.district);
       return null;
@@ -186,14 +219,10 @@ module.exports = function(_params) {
   function districtLookupProvinceState(provincestate, districtName) {
     //Find Region
     
-    
-
+  
     //console.log("looking for: "+ provincestate);
     var regionRegionName = findChildNamed(orgTree, provincestate, 'start');
     if (!regionRegionName) return null;
-
-    console.log("found " + districtName);
-
 
     //Find Zone
     var zone = findChildNamed(regionRegionName[0], provincestate, 'end', 
